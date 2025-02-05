@@ -31,12 +31,12 @@ def main():
             # Extract landmarks
             landmarks = det[4:14].reshape((5,2))
             
-            # Estimate head pose
-            angles, status = head_pose_detector.get_pose(frame, landmarks)
+            # Get head pose
+            angles, status = head_pose_detector.get_pose(frame)
             
             if angles is not None:
                 # Draw pose information
-                output = draw_pose_info(output, angles, status)
+                output = head_pose_detector.draw_pose_info(output, angles, status)
         
         # Show output
         cv.imshow('Face and Pose Detection', output)
